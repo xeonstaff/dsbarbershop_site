@@ -1,0 +1,108 @@
+---
+import { Text, ImageTitle } from "@components/common";
+import { imageLineUP } from "./images";
+---
+
+<div class="client_discounts-container">
+  <div class="client_discounts-layout">
+    <div class="client_discounts-header">
+      <Text tag="h2"
+        ><Text class="client_discounts-mainText"> Discounts</Text> We offer</Text
+      >
+    </div>
+    <div class="client_discounts-items">
+      {
+        imageLineUP.map((x) => (
+          <ImageTitle imageSrc={x.img} imageAlt={x.text} text={x.text} />
+        ))
+      }
+    </div>
+  </div>
+</div>
+
+<style>
+  .client_discounts-container {
+    container-type: inline-size;
+    height: 100%;
+  }
+  .client_discounts-layout {
+    height: 100%;
+    margin: 0 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+  .client_discounts-header {
+    font-size: 18px;
+    margin: 40px 0px;
+    --commonformat_textAlign: center;
+  }
+
+  .client_discounts-mainText {
+    font-size: 1em;
+    font-family: "barlow";
+    font-weight: 900;
+
+    color: var(--main_darkVanilla);
+    text-transform: uppercase;
+    text-align: var(--commonformat_textAlign, left);
+  }
+  .client_discounts-items {
+    background-color: var(--main_white);
+    height: 400px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    justify-items: center;
+    font-size: 25px;
+    box-shadow: 0px 4px 30px 0px #0000001A;
+  }
+
+  @container (max-width: 820px) {
+    .discounts-itemsclient {
+      height: 500px;
+      width: 750px;
+    }
+    .client_discounts-items {
+      max-width: 95vw;
+      font-size: 3vw;
+      padding-left: 20px;
+    }
+  }
+
+  @container (max-width: 530px) {
+    .client_discounts-layout {
+      justify-content: flex-start;
+      align-items: center;
+    }
+    .client_discounts-header {
+      max-height: 50px;
+      font-size: 11px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      h2 {
+        width: 280px;
+        margin-bottom: 25px;
+      }
+      p {
+        width: 280px;
+      }
+    }
+    .client_discounts-mainText {
+      width: 150px;
+    }
+    .client_discounts-items {
+      max-width: 95vw;
+      background-color: var(--main_cultured);
+      height: 600px;
+      width: 375px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+      align-items: center;
+      font-size: 25px;
+    }
+  }
+</style>

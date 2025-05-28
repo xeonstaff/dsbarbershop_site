@@ -1,0 +1,48 @@
+---
+import {Starsvg} from "@components/common"
+import { Image } from "astro:assets";
+
+const { rating, class: className, ...rest  } = Astro.props;
+const { image, averageRating, numberOfReview, title, imgAlt } = rating;
+
+const starRating = (avgRateing) => [...Array(Math.ceil(avgRateing)).keys()];
+---
+
+<div class:list={["rating_review-rating", className]}>
+  <Image src={image} alt={imgAlt} width={45}/>
+  <p class="rating_review-ratingValue">
+    {averageRating}
+  </p>
+
+  <div>
+    {starRating(averageRating).map((x) => <Starsvg />)}
+  </div>
+  <p class="rating_review-name"></p>
+  <p class="rating_review-numberReviews">{numberOfReview} reviews</p>
+  <p class="rating_review-title">{title}</p>
+</div>
+
+<style>
+  .rating_review-rating {
+    font-family: "Barlow";
+    font-size: inherit;
+    display: flex;
+    flex-direction: column;
+    place-items: center;
+    justify-content: center;
+  }
+  .rating_review-ratingValue {
+    font-size: 5.2em;
+    font-weight: 700;
+    margin: 1px;
+  }
+  .rating_review-name {
+    font-size: 1.5em;
+    font-weight: 700;
+    margin: 5px;
+  }
+  .rating_review-numberReviews {
+    font-size: 1.5em;
+    margin: 5px;
+  }
+</style>

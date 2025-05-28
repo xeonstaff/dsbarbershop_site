@@ -1,0 +1,19 @@
+---
+import "./styles/main.css";
+
+const { tagTitle, Cssvars = {}, class: className, ...rest } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width height=device-height" initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="D's Barbershops - Dayton, OH" />
+    <title>D's Barbershop</title>
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{tagTitle}</title>
+  </head>
+  <body class:list={[className]} {...rest}><slot /> </body>
+</html>

@@ -1,0 +1,47 @@
+---
+import { Image } from "astro:assets";
+import { Text } from "../";
+interface Props {
+  imageSrc: string;
+  imageAlt: string;
+  text: string;
+}
+
+const { imageSrc, imageAlt, text } = Astro.props;
+---
+
+<div class="imagetitle">
+  {imageSrc ? <Image class="image" src={imageSrc} alt={imageAlt} /> : null}
+  <p>{text}</p>
+</div>
+
+<style>
+  .imagetitle {
+    font-family: "barlow";
+    font-weight: 900;
+
+    display: flex;
+    align-items: center;
+    font-size: 1em;
+    width: 283px;
+
+    p {
+      margin-left: 20px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+  }
+
+  @container (max-width: 820px) {
+    .image{
+      width: 50px;
+      height: 50px;
+    }
+  }
+
+  @container (max-width: 480px) {
+    .imagetitle {
+      font-size: 20px;
+    }
+  }
+</style>

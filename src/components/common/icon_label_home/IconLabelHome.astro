@@ -1,0 +1,56 @@
+---
+const { type = "none", text = "nope" } = Astro.props;
+
+const labelShow = type !== "none" ? true : false;
+---
+
+<div class={`location_contact ${text}`}>
+  <div class="svg_container">
+    <slot />
+  </div>
+
+  <div class="location_contact_text text">
+    {labelShow ?  <b><p class="contact_label">{type}</p></b> : null}
+    <p>{text}</p>
+  </div>
+</div>
+
+<style>
+  .svg_container {
+    background-color: var(--svg_container-backgroundColor, var(--main_white));
+    height: var(--svg_container-heightWidth, 44px);
+    width: var(--svg_container-heightWidth, 44px);
+    display: grid;
+    place-items: center;
+    border-radius: 7px;
+    margin-right: 10px;
+  }
+
+  .location_contact {
+    font-family: "workSans";
+    display: grid;
+    grid-template-columns: min-content 1fr;
+    grid-template-rows: repeat(3, min-content);
+    grid-template-areas: "address address" "phone phone" "mail mail";
+    align-items: center;
+  }
+  
+  .text{
+    font-size: 16px;
+    line-height: var(--icon-label_line-height, 10px);
+  }
+
+  @media screen and (max-width: 960px) {
+      .text{
+        font-size: 12px;
+      }
+  }
+  @media screen and (max-width: 500px) {
+    .contact_label{
+      height: 6px;
+    }
+    .text {
+      line-height: 15px;
+    }
+  }
+</style>

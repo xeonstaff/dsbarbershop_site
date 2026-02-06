@@ -1,0 +1,174 @@
+---
+import Layout from "./Layout.astro";
+import Footer from "../components/blocks/footer/Footer.astro"
+
+
+const { title, locationKey } = Astro.props;
+
+console.log(locationKey)
+---
+
+<Layout class="locationLayout" tagTitle={title}>
+  <header class="location_header">
+    <slot name="locationHeader" />
+  </header>
+
+  <div class="main-body">
+    <div class="hours-map_section">
+      <div class="location_hours">
+        <slot name="locationHours" />
+      </div>
+
+      <div class="location_map">
+        <slot name="locationMap" />
+      </div>
+    </div>
+    <div class="location_staff">
+      <slot name="locationStaff" />
+    </div>
+    <div class="footer">
+      <Footer />
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .locationLayout {
+    --locationHours_width: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1000px 2000px 1fr;
+    grid-template-areas: "header header" "hours map" "staff staff" "footer footer";
+    width: 100vw;
+    background-color: var(--main_cultured);
+  }
+  .location_header-nav {
+    position: fixed;
+    top:0;
+    left:0;
+    z-index: 10;
+    --header_layout-backgroundColor: none;
+  }
+  .location_header {
+    grid-area: header;
+    overflow: hidden;
+  }
+  
+  .main-body{
+    height: 100%;
+  }
+
+  .hours-map_section{
+    width: 100vw;
+    display: flex;
+    justify-content: center;;
+    gap: 5vw;
+  }
+  .location_hours {
+    align-items: end;
+    height: 500px;
+    width: 500px;
+  }
+  .location_map {
+    grid-area: map;
+    max-height: 500px;
+    width: 500px;
+    display: flex;
+    align-items: end;
+  }
+  .location_staff {
+    grid-area: staff;
+    min-height: 1030px;
+    margin-top: 80px;
+  }
+  .footer {
+    grid-area: footer;
+    margin-top: 50px;
+  }
+
+  @media screen and (max-width: 1700px) {
+    .locationLayout{
+      grid-template-rows: 850px 2000px 1fr;
+    }
+  }
+
+  @media screen and (max-width: 1450px) {
+    .locationLayout{
+      grid-template-rows: 750px 2000px 1fr;
+    }
+  }
+
+  @media screen and (max-width: 1450px) {
+    .locationLayout{
+      grid-template-rows: 750px 2000px 1fr;
+    }
+  }
+  @media screen and (max-width: 1250px) {
+    .locationLayout{
+      grid-template-rows: 650px 2000px 1fr;
+    }
+    .hours-map_section{
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+    .location_hours {
+      width: 50vw;
+    }
+    .location_map {
+      width: 40vw;
+    }
+  }
+
+  @media screen and (max-width: 820px) {
+    .locationLayout {
+      grid-template-rows: 450px 2000px 1fr;
+      grid-template-columns: 1fr;
+      max-width: 830px;
+      font-size: 12px;
+    }
+
+    .location_header{
+      height: 300px;
+    }
+
+    .hours-map_section{
+      flex-direction: column;
+      align-items: center;
+      gap: 70px;
+    }
+    .location_hours {
+      height: 150px;
+      width: 80vw;
+    }
+    .location_map {
+      grid-area: map;
+      place-self: center;
+      height: 30vw;
+      width: 80vw;
+    }
+  }
+
+  @media screen and (max-width: 500px) {
+    .locationLayout {
+      grid-template-rows: 400px 2000px 1fr;
+      max-width: 500px;
+      font-size: 10px;
+    }
+    .location_map {
+      grid-area: map;
+      place-self: center;
+      width: 295px;
+      height: 200px;
+    }
+
+    .hours-map_section{
+      margin-top: 0px;
+      gap: 140px;
+    }
+    .store_hours{
+      height: 50px;
+      min-width: 295px;
+    }
+  }
+</style>

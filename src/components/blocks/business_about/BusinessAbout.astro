@@ -1,0 +1,219 @@
+---
+import { Text, FlexingNumber } from "@components/common";
+import { Image } from "astro:assets";
+import shave from "./assets/shave.webp";
+import bestProIcon from "./assets/bestpros.png";
+---
+
+<div class="business_about-container">
+  <div class="business_about-layout">
+    <div class="business_about-verbage">
+      <div class="business_about-header">
+        <Text tag="h2" style="font-family: barlow">D's Barbershop</Text>
+        <Text tag="p" class="business_about-subTitle">It's a Guy's Thing</Text>
+      </div>
+      <div class="business_about-content">
+        <Text tag="p"
+          >D's Barbershop was founded in 2019 as a traditional barbershop.
+        </Text>
+        <Text tag="p" class="description">
+          Drawing on a rich history of barbershop techniques, culture &
+          tradition, we offer a complete lineup of hair & beard services.
+        </Text>
+        <br>
+        <a class="read_more" href="/about#press" target="_blank" rel="noopener noreferrer">
+          D's in the Press →
+        </a>
+
+      </div>
+      <div class="business_about-flex">
+        <!-- taking this out - not sure if displaying the actual metric (~95%) is good branding -->
+        <!-- <FlexingNumber value="99" symbol="%">cutomer satisfaction</FlexingNumber> -->
+        <Image
+          class="bestprosimage"
+          src={bestProIcon}
+          widths={[335, 350, 600]}
+          sizes={`(max-width: 500px) 150px, (max-width: 820px) 175px, 300px`}
+          alt="a man in a barber chair getting a hair cut"
+        />
+        <FlexingNumber value="100" symbol="+">years combined experience</FlexingNumber>
+      </div>
+    </div>
+    <div class="business_about-image">
+      <Image
+        class="theimage"
+        src={shave}
+        widths={[335, 350, 600]}
+        sizes={`(max-width: 500px) 335px, (max-width: 820px) 350px, ${shave.width}`}
+        alt="a man in a barber chair getting a hair cut"
+      />
+    </div>
+  </div>
+</div>
+
+<style>
+  .business_about-container {
+    container-type: inline-size;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  .business_about-layout {
+    display: grid;
+    grid-template-columns: 680px 600px 1px;
+    gap: 100px;
+    width: 100vw;
+    justify-content: center;
+  }
+  .business_about-header {
+    font-size: 18px;
+  }
+  .business_about-subTitle {
+    font-size: 2em;
+    font-family: "barlow";
+    font-weight: 900;
+
+    color: var(--main_darkVanilla);
+    text-transform: uppercase;
+    text-align: var(--commonformat_textAlign, left);
+  }
+  .business_about-verbage {
+    place-self: center;
+    font-size: 23px;
+    --flexingNumber_fontSize: 23px;
+    background-color: #00000014;
+    padding: 43px;
+    border-radius: 8px;
+    border: 1px solid rgba(0, 0, 0, 0.078);
+    box-shadow: 0px 4px 30px 0px #0000001a;
+  }
+  .business_about-content {
+    line-height: 27px;
+    font-weight: 400;
+    width: 493px;
+    height: 163px;
+    display: flex;
+    margin-top: 20px;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .business_about-flex {
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    margin-top: 50px;
+    font-size: 20px;
+  }
+  .theimage{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;    
+    border-radius: 8px; 
+    box-shadow: 0px 4px 30px 0px #0000001a;
+  }
+
+  .bestprosimage{
+    width: 200px;
+    height: 180px;
+  }
+
+  .read_more {
+    font-weight: 500;
+    color: #0066cc;
+    text-decoration: none;
+    transition: color 0.3s;
+    font-family: barlow;
+    text-decoration: underline;
+  }
+
+  .read_more:hover {
+    color: #004b99;
+  }
+
+  @container (max-width: 1400px) {
+    .business_about-layout {
+      grid-template-columns: 450px 500px;
+    }
+  }
+  @container (max-width: 1200px) {
+    .business_about-layout {
+      gap: 60px;
+      justify-items: center;
+    }
+    .business_about-image {
+      width: 400px;
+    }
+  }
+
+  @container (max-width: 960px) {
+    .business_about-layout {
+      display: flex;
+      flex-direction: column;
+      justify-items: center;
+    }
+    .business_about-verbage {
+      place-self: center;
+      justify-items: center;
+      font-size: 18px;
+      --flexingNumber_fontSize: 18px;
+    }
+    .business_about-header {
+      font-size: 17px;
+    }
+    .business_about-content {
+      line-height: 21px;
+      width: 360px;
+      height: 130px;
+    }
+    .business_about-image {
+      display: flex;
+      align-self: center;
+      height: 453px;
+      width: 80%;
+    }
+    .description {
+      display: flex;
+      justify-self: center;
+    }
+  }
+
+  @container (max-width: 530px) {
+    .business_about-layout {
+      grid-template-columns: 335px;
+      grid-template-rows: 300px 285px;
+      gap: 10px;
+      justify-items: center;
+    }
+
+    .business_about-verbage {
+      font-size: 12px;
+      --flexingNumber_fontSize: 12px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .business_about-content {
+      --commonformat_textAlign: baseline;
+      line-height: 14.08px;
+      width: 295px;
+      height: 70px;
+    }
+    .business_about-header {
+      --commonformat_textAlign: center;
+      font-size: 12px;
+    }
+    .business_about-flex {
+      justify-content: center;
+      gap: 30px;
+    }
+    .business_about-image {
+      height: 335px;
+      width: 90%;
+    }
+    .bestprosimage{
+      width: 120px;
+      height: 110px;
+    }
+  }
+</style>

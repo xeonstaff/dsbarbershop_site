@@ -1,0 +1,142 @@
+<main class="main_grid_home">
+  <header class="header_slot">
+    <slot name="header" />
+  </header>
+  <div class="hero_slot">
+    <slot name="hero" />
+  </div>
+  <div class="recentCustomers_slot">
+    <slot name="recentCustomers" />
+  </div>
+  <div class="googlereviews_slot">
+    <slot name="googlereviews" />
+  </div>
+  <div class="businessAbout_slot">
+    <slot name="businessAbout" />
+  </div>
+  <div class="discounts_slot">
+    <slot name="discounts" />
+  </div>
+  <div class="callToAction_slot">
+    <slot name="callToAction" />
+  </div>
+  <div class="locations_slot" id="findYourShop">
+    <slot name="locations" />
+  </div>
+  <div class="services_slot">
+    <slot name="services" />
+  </div>
+  <!-- <div class="social_slot">
+    <slot name="social" />
+  </div> -->
+  <footer class="footer_slot">
+    <slot name="footer" />
+  </footer>
+</main>
+
+<style>
+  .main_grid_home {
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+  }
+  .header_slot {
+    position: absolute;
+    z-index: 100;
+    width: 1440px;
+  }
+  .hero_slot {
+    overflow: hidden;
+  }
+  .recentCustomers_slot {
+    min-height: 250px;
+    margin: 20px 0px;
+  }
+  .googlereviews_slot {
+    min-height: 414px;
+  }
+  .businessAbout_slot {
+    min-height: 600px;
+    margin: 20px 50px;
+  }
+  .discounts_slot {
+    min-height: 650px;
+    margin-top: 40px;
+  }
+  .callToAction_slot {
+    height: 650px;
+  }
+  .locations_slot {
+    min-height: 875px;
+  }
+  .services_slot {
+    min-height: 750px;
+  }
+  .social_slot {
+    height: 1657px;
+  }
+  .footer_slot {
+  }
+
+  @media (max-width: 820px) {
+    .hero_slot {
+      min-height: 66vw;
+    }
+    .recentCustomers_slot {
+      min-height: 150px;
+    }
+    .businessAbout_slot {
+      min-height: 455px;
+      margin: 50px 15px;
+    }
+    .discounts_slot {
+      min-height: 650px;
+    }
+
+    .callToAction_slot {
+      height: 314px;
+    }
+    .social_slot {
+      height: 932px;
+      overflow: hidden;
+    }
+    .header_slot {
+      position: absolute;
+      z-index: 100;
+      width: 810px;
+    }
+  }
+  @media screen and (max-width: 580px) {
+  .hero_slot {
+      min-height: 68vw;
+    }
+  }
+
+  @media screen and (max-width: 500px) {
+    .hero_slot {
+      min-height: 80vw;
+    }
+    .recentCustomers_slot {
+      min-height: 132px;
+    }
+    .businessAbout_slot {
+      min-height: 580px;
+      margin: 20px 20px;
+    }
+    .social_slot {
+      height: 432px;
+    }
+    .callToAction_slot {
+      height: 295px;
+    }
+  }
+
+  @media screen and (max-width: 400px) {
+    .hero_slot {
+      height: 50vh;
+    }
+    .recentCustomers_slot {
+      min-height: 140px;
+    }
+  }
+</style>

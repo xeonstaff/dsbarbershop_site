@@ -1,0 +1,36 @@
+---
+import Layout from "../layouts/Layout.astro";
+import {
+  Services,
+  Locations,
+  HeroSection,
+  RecentCustomers,
+  BusinessAbout,
+  Discounts,
+  CalltoAction,GoogleReviews,
+  Footer,Instagram,
+} from "../components/blocks";
+import HomeMainGrid from "../layouts/HomeMainGrid.astro";
+---
+
+<Layout title="D's Barbershop" class="ds_home_page">
+  <HomeMainGrid>
+    <HeroSection slot="hero" activePage="home"/>
+    <GoogleReviews slot="googlereviews" />
+    <RecentCustomers slot="recentCustomers" />
+    <BusinessAbout slot="businessAbout" />
+    <Discounts slot="discounts" class="discounts" />
+    <CalltoAction slot="callToAction" />
+    <Locations slot="locations" />
+    <Services slot="services" />
+    <!-- temporarily removing instagram, as the page isn't used -- can be implemented later if requested -->
+    <!-- <Instagram slot="social"/> -->
+    <Footer slot="footer" pageId="home"/>
+  </HomeMainGrid>
+</Layout>
+
+<style>
+.ds_home_page{
+  --iconBar-backgroundColor:var(--main_black)
+}
+</style>

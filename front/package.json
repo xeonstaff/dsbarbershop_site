@@ -1,0 +1,24 @@
+{
+  "name": "front",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "format": "npx prettier . --write"
+  },
+  "dependencies": {
+    "@astrojs/react": "^3.6.2",
+    "@astrojs/ts-plugin": "^1.8.0",
+    "astro": "^4.11.3",
+    "swiper": "^11.1.15"
+  },
+  "devDependencies": {
+    "prettier": "^3.3.2",
+    "prettier-plugin-astro": "^0.14.0",
+    "sharp": "^0.32.6"
+  }
+}

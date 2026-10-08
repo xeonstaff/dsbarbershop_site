@@ -1,0 +1,183 @@
+---
+import { Text } from "@components/common";
+import { Image } from "astro:assets";
+
+import combScissors from "./assets/combScissors.png";
+import beard from "./assets/beard.png";
+import barberpole from "./assets/barberpole.png";
+
+const serviceList = [
+  {
+    type: "hair Services",
+    icon: combScissors,
+    lineList: [
+      { title: "Regular Haircut", price: 30 },
+      { title: "buzzcut", price: 20 },
+      { title: "lineup", price: 20 },
+      { title: "fade & taper", price: 35 },
+      { title: "senior haircut", price: 25 },
+      { title: "kids cut", price: 25 },
+      { title: "kids skin fade (12 & under)", price: 25 },
+    ],
+  },
+  {
+    type: "beard services",
+    icon: beard,
+    lineList: [
+      { title: "beard trim", price: 30 },
+      { title: "beard trim w/ razor", price: 35 },
+      { title: "face shave w/ razor", price: 45 },
+      { title: "head shave w/ razor", price: 40 },
+      { title: "cut & shave", price: 60 },
+      { title: "haircut & beard trim", price: 50 },
+      { title: "head shave & beard trim", price: 55 },
+    ],
+  },
+  {
+    type: "premium",
+    icon: barberpole,
+    lineList: [
+      { title: "facemask", price: 25 },
+      { title: "face waxing", price: 20 },
+      { title: "the vip", price: 90 },
+    ],
+  },
+];
+---
+
+<div class="services-container">
+  <div class="services-layout">
+    <div class="service-header">
+      <Text tag="h3"
+        >Check out our <span class="title_lightshade">Services</span></Text
+      >
+    </div>
+
+    <div class="services-content">
+      {
+        serviceList.map((service) => (
+          <div class="service-section-layout">
+            <div class="service-section-icon">
+              <Image
+                class="theimage"
+                src={service.icon}
+                alt={`represent ${service.type}`}
+              />
+            </div>
+            <div>
+              <p class="service-section-title title_lightshade">
+                {service.type}
+              </p>
+            </div>
+            <ul class="productItem_list_service">
+              {service.lineList.map((item) => (
+                <li class="productItem_service">
+                  <p>{item.title}</p>
+                  <p>{item.price}</p>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</div>
+
+<style>
+  .services-container {
+    container-type: inline-size;
+    height: 100%;
+  }
+  .services-layout {
+    margin-top: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .service-header {
+    font-size: 16px;
+  }
+  .services-content {
+    margin-top: 60px;
+    width: 85%;
+    background-color: var(--main_white);
+    box-shadow: 0px 4px 30px 0px #0000001A;
+    display: flex;
+    justify-content: space-evenly;
+  }
+  .service-section-layout {
+    width: 25%;
+    display: grid;
+    font-size: 12px;
+    grid-template-rows: 100px 100px max-content;
+    font-family: "barlow";
+    font-weight: 900;
+
+    margin-bottom: 50px;
+  }
+  .service-section-title {
+    font-size: 2em;
+    text-transform: uppercase;
+    text-align: center;
+  }
+  .service-section-icon {
+    width: 80px;
+    place-self: center;
+    margin-top: 50px;
+  }
+  .productItem_service {
+    display: flex;
+    justify-content: space-between;
+    p {
+      margin: 0;
+      padding: 0;
+      text-transform: uppercase;
+    }
+  }
+  .productItem_list_service {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 25px;
+  }
+  ul,
+  li {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  @container (max-width: 820px) {
+    .service-section-layout {
+    }
+    .service-header {
+      font-size: 15px;
+    }
+    .services-content {
+      margin: 50px 0px;
+      width: 90%;
+    }
+    .service-section-title {
+      font-size: 1.2em;
+    }
+  }
+
+  @container (max-width: 500px) {
+    .service-section-layout {
+      width: 75%;
+      font-size: 10px;
+      display: grid;
+      grid-template-rows: 130px 40px 1fr;
+    }
+    .service-header {
+      font-size: 12px;
+      --commonformat_textAlign:center;
+    }
+    .services-content {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+</style>

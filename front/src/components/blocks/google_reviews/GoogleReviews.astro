@@ -1,0 +1,133 @@
+---
+import googleIcon from "./assets/googleicon.png";
+import { RatingDisplay, Starsvg } from "@components/common";
+import ReviewSlider from "./ReviewSlider.astro"
+
+const googleRatingGreene = {
+  reviews: 324,
+  averageRating: 4.8,
+  numberOfReview: 331,
+  title: "The Greene",
+  imgAlt: "the letter G in google",
+  image: googleIcon,
+  externalLink:
+    "https://www.google.com/maps/place/D's+Barbershop+-+the+Greene/@39.7215922,-84.1842192,13z/data=!4m12!1m2!2m1!1sds+barbershop!3m8!1s0x88409b19339ed10b:0xdf3360c8e4890986!8m2!3d39.6946137!4d-84.1010592!9m1!1b1!15sCg1kcyBiYXJiZXJzaG9wWg8iDWRzIGJhcmJlcnNob3CSAQtiYXJiZXJfc2hvcOABAA!16s%2Fg%2F11sh2d6sd0?entry=ttu&g_ep=EgoyMDI0MTAwNy4xIKXMDSoASAFQAw%3D%3D",
+};
+
+const googleRatingFlats = {
+  reviews: 130,
+  averageRating: 4.7,
+  numberOfReview: 166,
+  title: "The Flats",
+  imgAlt: "the letter G in google",
+  image: googleIcon,
+  externalLink:
+    "https://www.google.com/maps/place/D's+Barbershop+-+the+Flats/@39.7485893,-84.1875552,17z/data=!3m1!4b1!4m6!3m5!1s0x884085a35f7ce375:0x1e0b382d645ddd30!8m2!3d39.7485852!4d-84.1849803!16s%2Fg%2F11v6cj7v57?entry=ttu&g_ep=EgoyMDI1MDMxOC4wIKXMDSoASAFQAw%3D%3D",
+};
+---
+
+<div class="google_review-container">
+  <div class="google_review-layout">
+    <RatingDisplay class="google_review" rating={googleRatingGreene} />
+
+    <div class:list={["google_review-writeup", "google_review-box-style"]}>
+      <ReviewSlider>
+      <div class="writeup_stars">
+        {[...Array(5).keys()].map((x) => <Starsvg />)}
+      </div>
+    </div>
+
+    <RatingDisplay class="bestPro_review" rating={googleRatingFlats} />
+  </div>
+</div>
+
+<style>
+  .google_review-container {
+    container-type: inline-size;
+    height: 100%;
+  }
+  .google_review-layout {
+    display: grid;
+    grid-template-rows: 350px;
+    grid-template-columns: 1fr 800px 1fr;
+    grid-template-areas: "googleReview userReview bestPro";
+
+  }
+  .google_review-writeup {
+    grid-area: userReview;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    padding:50px;
+
+    p {
+      font-family: "workSans";
+      line-height: 1.5;
+      font-size: 1em;
+    }
+  }
+  .google_review-box-style {
+    background-color: var(--main_white);
+    box-shadow: 0px 4px 30px 0px #0000001a;
+    border-radius: 8px;
+  }
+  .google_review {
+    grid-area: googleReview;
+  }
+  .bestPro_review {
+    grid-area: bestPro;
+    
+  }
+  .reviewer_name {
+    font-weight: 900;
+  }
+
+  @container (max-width: 1400px) {
+    .google_review-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      grid-template-areas: "userReview userReview" "googleReview  bestPro";
+      place-items: center;
+      font-size: 16px;
+    }
+    .google_review-writeup {
+      margin-bottom: 40px;
+      max-width: 70vw;
+    }
+  }
+
+  @container (max-width: 1140px) {
+    .google_review-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      grid-template-areas: "userReview userReview" "googleReview  bestPro";
+      place-items: center;
+      font-size: 16px;
+    }
+    .google_review-writeup {
+      height: 247px;
+      width: 600px;
+    }
+
+  }
+  @container (max-width: 640px) {
+    .google_review-layout{
+      font-size: 10px;
+      /* padding-left: 4vw; */
+
+    }
+    .google_review-writeup {
+      height: 200px;
+      width: 80vw;
+      padding-left: 10vw;
+
+      display: flex;
+      justify-content: center;
+
+    }
+  }
+</style>

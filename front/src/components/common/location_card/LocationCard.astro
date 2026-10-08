@@ -1,0 +1,185 @@
+---
+import { ButtonLink, Text,EmbededMap } from "../";
+import PhoneSVG from "./assets/phone.astro";
+import EmailSVG from "./assets/email.astro";
+import AddressSVG from "./assets/address.astro";
+
+const { locationDetails } = Astro.props;
+
+const { thePlace, location, hours, address, phone, email, pagePath, bookPath } =
+  locationDetails;
+
+  const mapKey = thePlace.split(" ").join("").toLowerCase()
+
+import IconLabelHome from "../icon_label_home/IconLabelHome.astro";
+---
+
+<div class="location_card">
+  <header class="location_cardHeader">
+    <Text tag="h4" class="location_cardHeader_name">{thePlace}</Text>
+    <p class="location_cardHeader_location">{location}</p>
+  </header>
+  <div class="location_map">
+    <EmbededMap locationMap={mapKey}/>
+  </div>
+  <div class="store_hours">
+    {
+      hours.map((hour) => (
+        <div class="time-text store_hours_details">
+          <p class="time-text hours_detail_label">{hour.day}</p>
+          <p class="time-text hours_detail_time">{hour.time}</p>
+        </div>
+      ))
+    }
+  </div>
+
+  <div class="location_contact_area">
+    <div class="location_contact address">
+      <IconLabelHome type="address" text={address}>
+        <AddressSVG />
+      </IconLabelHome>
+    </div>
+    <div class="location_contact phone">
+      <IconLabelHome type="phone" text={phone}>
+        <PhoneSVG />
+      </IconLabelHome>
+    </div>
+    <div class="location_contact mail">
+      <IconLabelHome type="mail" text={email}>
+        <EmailSVG />
+      </IconLabelHome>
+    </div>
+  </div>
+  <div class="location_actions">
+    <ButtonLink varient="backout" linkPath={pagePath}>View Page</ButtonLink>
+    <ButtonLink varient="transparent" newWindow="true" linkPath={bookPath.store}
+      >Book Now</ButtonLink
+    >
+  </div>
+</div>
+
+<style>
+  .location_card {
+    width: 556px;
+    max-width: 46vw;
+    height: 875px;
+    font-size: 12px;
+    background-color: var(--main_corked);
+    box-shadow: 0px 4px 30px 0px #0000001a;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 20px;
+    border: 3px solid var(--main_black);
+    padding: 20px;
+    margin: 0 2vw;
+    font-family: "barlow";
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    p {
+      margin: 0;
+      padding: 0;
+      height: auto;
+    }
+  }
+  .location {
+    height: 264px;
+  }
+  .location_cardHeader {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: 30px 0px;
+  }
+  .location_cardHeader_name {
+    font-size: 3.5em;
+  }
+  .location_cardHeader_location {
+    font-weight: 400;
+    font-size: 1.7em;
+  }
+  .location_map {
+    width: 100%;
+    aspect-ratio: 3/2;
+  }
+  .store_hours {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 110px;
+    font-size: 1.84em;
+  }
+  .store_hours_details {
+    display: flex;
+    justify-content: space-between;
+    font-family: "workSans";
+
+    .hours_detail_label {
+      font-family: "barlow";
+      font-weight: 600;
+    }
+  }
+  .location_contact_area {
+    width: 100%;
+    height: 126px;
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    font-size: 0.8em;
+    --icon-label_line-height: 25px;
+    .address {
+      grid-column: 1/3;
+    }
+    .mail {
+      grid-column: 1/3;
+    }
+  }
+
+  .location_actions {
+    --button_link_padding: 15px 0px;
+    --button_link_width: 215px;
+    --button_link_margin: 0 10px;
+    letter-spacing: 2.5px;
+    display: flex;
+    margin-top: 30px;
+    font-size: 1.5em;
+  }
+
+  @media (max-width: 1100px) {
+    .location_actions {
+      --button_link_width: 150px;
+      width: 100%;
+      justify-content: space-around;
+    }
+  }
+
+  @media (max-width: 820px) {
+    .location_card {
+      --svg_container-heightWidth: 28px;
+      width: 363px;
+      height: 690px;
+      font-size: 7.5px;
+    }
+    .location_contact_area {
+      width: 322px;
+    }
+    .location_actions {
+      --button_link_width: 150px;
+      width: unset;
+      justify-content: unset;
+    }
+  }
+
+  @media (max-width: 700px) {
+    /* … */
+    .location_card {
+      max-width: 90vw;
+    }
+    .location_contact_area {
+      width: 322px;
+    }
+  }
+</style>
